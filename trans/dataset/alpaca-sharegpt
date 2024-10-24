@@ -1,0 +1,211 @@
+<fnode id="7C11EA4235F0EF1E" name="ProcessOperator" alias="ProcessOperator" x="130" y="130" replica="1" atom="false">
+  <inport name="inport1" alias="inport1" dataType="/" option="true" extendable="true" connectionLimit="-1" type="THROUGH">
+  </inport>
+  <outport name="outport1" alias="outport1" dataType="/" option="true" extendable="true" connectionLimit="-1" type="THROUGH">
+  </outport>
+  <outport name="result11" alias="result11" dataType="/" option="true" extendable="true" connectionLimit="-1" type="THROUGH">
+  </outport>
+  <fnode id="163F5E3299A74F61" name="JsonReader" alias="Json读取" x="91" y="136" replica="1" dependencyPolicy="PublicFirst">
+    <parameters>
+      <parametergroup name="general" c_Alias="一般" c_Compox="sightx-tab" c_Index="1" c_Option="true" c_Escape="true" >
+        <parameter name="filePath" c_Alias="文件名" c_Compox="sengee-lfile-selector" c_Index="2" c_Option="true" c_Escape="true" c_Var="true" >/llm/alpaca_en_demo.json</parameter>
+        <parameter name="charset" c_Alias="字符集" c_Compox="sightx-file-charset" c_Index="3" c_Option="true" c_Escape="true" c_Var="true" >UTF-8</parameter>
+        <parameter name="nameAsData" c_Alias="文件名添加入结果" c_Compox="sightx-switch" c_Index="4" c_Option="true" c_Escape="true" c_Var="true" >false</parameter>
+        <parametergroup name="structureMappings" c_Alias="结构映射" c_Compox="sengee-structureMappings" c_Index="5" c_Option="true" c_Escape="true" c_Var="true" >
+          <parameter name="mappingName" c_Alias="字段映射名" c_Compox="" c_Index="6" c_Option="true" c_Escape="true" >o</parameter>
+          <parameter name="dataPath" c_Alias="结构字段路径" c_Compox="" c_Index="7" c_Option="true" c_Escape="true" >o</parameter>
+          <parameter name="filterMode" c_Alias="过滤模式" c_Compox="filterModeCtrl" c_Index="8" c_Option="true" c_Escape="true" >filter</parameter>
+          <parameter name="startPos" c_Alias="起始位置" c_Compox="startPosCtrl" c_Index="9" c_Option="true" c_Escape="true" >0</parameter>
+          <parameter name="endPos" c_Alias="结束位置" c_Compox="endPosCtrl" c_Index="10" c_Option="true" c_Escape="true" >-1</parameter>
+          <parameter name="filter" c_Alias="过滤条件" c_Compox="filterCtrl" c_Index="11" c_Option="true" c_Escape="true" >
+          </parameter>
+          <parametertable name="structureFields" c_Alias="结构字段映射" c_Compox="sightx-tablelist" c_Index="12" c_Option="true" c_Escape="true" >
+            <head horizontal="true">
+              <parameter name="columnName" c_Alias="输出列名" c_Compox="sightx-input" c_Index="13" c_Option="true" c_Escape="true" >
+              </parameter>
+              <parameter name="dataPath" c_Alias="结构字段路径" c_Compox="sightx-input" c_Index="14" c_Option="true" c_Escape="true" >
+              </parameter>
+              <parameter name="columnType" c_Alias="输出列数据类型" c_Compox="sightx-datatype" c_Index="15" c_Option="true" c_Escape="true" >
+              </parameter>
+              <parameter name="formatFunc" c_Alias="数据转换函数" c_Compox="sightx-input" c_Index="16" c_Option="true" c_Escape="true" >
+              </parameter>
+            </head>
+            <parameterrow columnName="instruction" dataPath="o.instruction" columnType="String" formatFunc=""/>
+            <parameterrow columnName="input" dataPath="o.input" columnType="String" formatFunc=""/>
+            <parameterrow columnName="output" dataPath="o.output" columnType="String" formatFunc=""/>
+          </parametertable>
+        </parametergroup>
+      </parametergroup>
+    </parameters>
+    <inport name="streamIn" alias="streamIn" dataType="/dataStream" option="true" connectionLimit="1" type="THROUGH">
+    </inport>
+    <outport name="dataOut" alias="dataOut" dataType="/" option="true" connectionLimit="-1" type="THROUGH">
+    </outport>
+    <tags>
+      <tag name="type" value="Reader" />
+    </tags>
+  </fnode>
+  <fnode id="C41095355EA7D420" name="ColumnsMapper" alias="列映射1" x="556" y="136" replica="1" dependencyPolicy="PublicFirst">
+    <parameters>
+      <parametergroup name="columnSet" c_Alias="列集" c_Compox="sightx-tab" c_Index="1" c_Option="true" c_Escape="true" >
+        <parametergroup name="colMappings" c_Alias="列集合" c_Compox="sengee-colMappings" c_Index="2" c_Option="true" c_Escape="true" c_Var="true" >
+          <parametergroup name="mappingEntry">
+            <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="false">user</parameter>
+            <parameter name="colType" c_Alias="输出列类型" c_Compox="sightx-datatype" c_Index="0" c_Option="true">
+            </parameter>
+            <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">
+            </parameter>
+            <parametergroup name="childColumns">
+              <parametergroup name="mappingEntry">
+                <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="false">role</parameter>
+                <parameter name="colType" c_Alias="输出列类型" c_Compox="sightx-datatype" c_Index="0" c_Option="true">String</parameter>
+                <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">&apos;user&apos;</parameter>
+              </parametergroup>
+              <parametergroup name="mappingEntry">
+                <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="false">content</parameter>
+                <parameter name="colType" c_Alias="输出列类型" c_Compox="sightx-datatype" c_Index="0" c_Option="true">String</parameter>
+                <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">userContent</parameter>
+              </parametergroup>
+            </parametergroup>
+          </parametergroup>
+          <parametergroup name="mappingEntry">
+            <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="false">assistant</parameter>
+            <parameter name="colType" c_Alias="输出列类型" c_Compox="sightx-datatype" c_Index="0" c_Option="true">
+            </parameter>
+            <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">
+            </parameter>
+            <parametergroup name="childColumns">
+              <parametergroup name="mappingEntry">
+                <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="false">role</parameter>
+                <parameter name="colType" c_Alias="输出列类型" c_Compox="sightx-datatype" c_Index="0" c_Option="true">String</parameter>
+                <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">&apos;assistant&apos;</parameter>
+              </parametergroup>
+              <parametergroup name="mappingEntry">
+                <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="false">content</parameter>
+                <parameter name="colType" c_Alias="输出列类型" c_Compox="sightx-datatype" c_Index="0" c_Option="true">String</parameter>
+                <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">output</parameter>
+              </parametergroup>
+            </parametergroup>
+          </parametergroup>
+        </parametergroup>
+      </parametergroup>
+    </parameters>
+    <inport name="dataIn" alias="dataIn" dataType="/" option="true" connectionLimit="-1" type="THROUGH">
+    </inport>
+    <outport name="dataOut" alias="dataOut" dataType="/" option="true" connectionLimit="-1" type="THROUGH">
+    </outport>
+    <tags>
+      <tag name="type" value="Processing" />
+    </tags>
+  </fnode>
+  <fnode id="81B1494B17E191CE" name="AddColumns" alias="列添加" x="247" y="137" replica="1" dependencyPolicy="PublicFirst">
+    <parameters>
+      <parametergroup name="general" c_Alias="一般" c_Compox="sightx-tab" c_Index="1" c_Option="true" c_Escape="true" >
+        <parametertable name="columnSet" c_Alias="待添加列集合" c_Compox="sightx-tablelist" c_Index="2" c_Option="true" c_Escape="true" c_Var="true" >
+          <head horizontal="false">
+            <parameter name="columnName" c_Alias="列名" c_Compox="sightx-input" c_Index="3" c_Option="false" c_Escape="true" >
+            </parameter>
+            <parameter name="columnType" c_Alias="列类型" c_Compox="sightx-datatype" c_Index="4" c_Option="false" c_Escape="true" >String</parameter>
+            <parameter name="columnExpr" c_Alias="列值表达式" c_Compox="sightx-input" c_Index="5" c_Option="false" c_Escape="true" >
+            </parameter>
+          </head>
+          <parameterrow>
+            <parameter name="columnName">
+              <![CDATA[userContent]]>
+            </parameter>
+            <parameter name="columnType">
+              <![CDATA[String]]>
+            </parameter>
+            <parameter name="columnExpr">
+              <![CDATA['']]>
+            </parameter>
+          </parameterrow>
+        </parametertable>
+      </parametergroup>
+    </parameters>
+    <inport name="dataIn" alias="dataIn" dataType="/" option="true" connectionLimit="-1" type="THROUGH">
+    </inport>
+    <outport name="dataOut" alias="dataOut" dataType="/" option="true" connectionLimit="-1" type="THROUGH">
+    </outport>
+    <tags>
+      <tag name="type" value="Processing" />
+    </tags>
+  </fnode>
+  <fnode id="509A4EC035625A70" name="ValuesSetByCondition" alias="基于条件的值设置" x="394" y="134" replica="1" dependencyPolicy="PublicFirst">
+    <parameters>
+      <parametergroup name="general" c_Alias="一般" c_Compox="sightx-tab" c_Index="1" c_Option="true" c_Escape="true" >
+        <parameter name="columnName" c_Alias="待赋值列" c_Compox="sengee-column-selector" c_Index="2" c_Option="false" c_Escape="true" c_Var="true" >userContent</parameter>
+        <parametertable name="columnSet" c_Alias="赋值规则" c_Compox="sightx-tablelist" c_Index="3" c_Option="true" c_Escape="true" c_Var="true" >
+          <head horizontal="true">
+            <parameter name="conExpr" c_Alias="条件表达式" c_Compox="sightx-input" c_Index="4" c_Option="false" c_Escape="true" >
+            </parameter>
+            <parameter name="colExpr" c_Alias="赋值表达式" c_Compox="sightx-input" c_Index="5" c_Option="false" c_Escape="true" >
+            </parameter>
+          </head>
+          <parameterrow conExpr="input\bis\bnull" colExpr="instruction"/>
+          <parameterrow conExpr="input\bis\bnot\bnull" colExpr="strFormat(&apos;%s%s&apos;,instruction,input)"/>
+        </parametertable>
+      </parametergroup>
+    </parameters>
+    <inport name="dataIn" alias="dataIn" dataType="/" option="true" connectionLimit="-1" type="THROUGH">
+    </inport>
+    <outport name="dataOut" alias="dataOut" dataType="/" option="true" connectionLimit="-1" type="THROUGH">
+    </outport>
+    <tags>
+      <tag name="type" value="Processing" />
+    </tags>
+  </fnode>
+  <fnode id="4EA89ED7164A0253" name="ColumnsMapper" alias="列映射1" x="113" y="295" replica="1" dependencyPolicy="PublicFirst">
+    <parameters>
+      <parametergroup name="columnSet" c_Alias="列集" c_Compox="sightx-tab" c_Index="1" c_Option="true" c_Escape="true" >
+        <parametergroup name="colMappings" c_Alias="列集合" c_Compox="sengee-colMappings" c_Index="2" c_Option="true" c_Escape="true" c_Var="true" >
+          <parametergroup name="mappingEntry">
+            <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="false">messages</parameter>
+            <parameter name="colType" c_Alias="输出列类型" c_Compox="sightx-datatype" c_Index="0" c_Option="true">Array</parameter>
+            <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">merge2Array(false,user,assistant)</parameter>
+          </parametergroup>
+        </parametergroup>
+      </parametergroup>
+    </parameters>
+    <inport name="dataIn" alias="dataIn" dataType="/" option="true" connectionLimit="-1" type="THROUGH">
+    </inport>
+    <outport name="dataOut" alias="dataOut" dataType="/" option="true" connectionLimit="-1" type="THROUGH">
+    </outport>
+    <tags>
+      <tag name="type" value="Processing" />
+    </tags>
+  </fnode>
+  <fnode id="27F2C0D95705923F" name="JsonWriter" alias="Json写出" x="348" y="291" replica="1" dependencyPolicy="PublicFirst">
+    <parameters>
+      <parametergroup name="general" c_Alias="一般" c_Compox="sightx-tab" c_Index="1" c_Option="true" c_Escape="true" >
+        <parameter name="filePath" c_Alias="文件名" c_Compox="sengee-lwfile-selector" c_Index="2" c_Option="true" c_Escape="true" c_Var="true" >/modelMessages.json</parameter>
+        <parameter name="writeAsFile" c_Alias="文件格式写出" c_Compox="sightx-switch" c_Index="3" c_Option="true" c_Escape="true" c_Var="true" >false</parameter>
+        <parameter name="modifiable" c_Alias="是否修改已存在文件" c_Compox="sightx-switch" c_Index="4" c_Option="true" c_Escape="true" c_Var="true" >true</parameter>
+        <parametergroup name="colMappings" c_Alias="输出结构映射" c_Compox="sengee-colMappings" c_Index="5" c_Option="true" c_Escape="true" c_Var="true" >
+          <parametergroup name="mappingEntry">
+            <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="true">messages</parameter>
+            <parameter name="colType" c_Alias="输出列类型" c_Compox="sightx-hidden" c_Index="0" c_Option="true">Array&lt;Object[java.lang.Object]&gt;</parameter>
+            <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">messages</parameter>
+          </parametergroup>
+        </parametergroup>
+      </parametergroup>
+    </parameters>
+    <inport name="dataIn" alias="dataIn" dataType="/" option="true" connectionLimit="-1" type="THROUGH">
+    </inport>
+    <outport name="bytesOut" alias="bytesOut" dataType="/dataBytes" option="true" connectionLimit="-1" type="THROUGH">
+    </outport>
+    <tags>
+      <tag name="type" value="Writer" />
+    </tags>
+  </fnode>
+  <connection from="81B1494B17E191CE.dataOut" to="509A4EC035625A70.dataIn" checked="true">
+  </connection>
+  <connection from="509A4EC035625A70.dataOut" to="C41095355EA7D420.dataIn" checked="true">
+  </connection>
+  <connection from="C41095355EA7D420.dataOut" to="4EA89ED7164A0253.dataIn" checked="true">
+  </connection>
+  <connection from="4EA89ED7164A0253.dataOut" to="27F2C0D95705923F.dataIn" checked="true">
+  </connection>
+  <connection from="163F5E3299A74F61.dataOut" to="81B1494B17E191CE.dataIn" checked="true">
+  </connection>
+</fnode>
