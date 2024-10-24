@@ -45,7 +45,7 @@
       <tag name="type" value="Reader" />
     </tags>
   </fnode>
-  <fnode id="C41095355EA7D420" name="ColumnsMapper" alias="列映射1" x="556" y="136" replica="1" dependencyPolicy="PublicFirst">
+  <fnode id="C41095355EA7D420" name="ColumnsMapper" alias="列映射1" x="556" y="135" replica="1" dependencyPolicy="PublicFirst">
     <parameters>
       <parametergroup name="columnSet" c_Alias="列集" c_Compox="sightx-tab" c_Index="1" c_Option="true" c_Escape="true" >
         <parametergroup name="colMappings" c_Alias="列集合" c_Compox="sengee-colMappings" c_Index="2" c_Option="true" c_Escape="true" c_Var="true" >
@@ -131,7 +131,7 @@
       <tag name="type" value="Processing" />
     </tags>
   </fnode>
-  <fnode id="509A4EC035625A70" name="ValuesSetByCondition" alias="基于条件的值设置" x="394" y="134" replica="1" dependencyPolicy="PublicFirst">
+  <fnode id="509A4EC035625A70" name="ValuesSetByCondition" alias="基于条件的值设置" x="396" y="136" replica="1" dependencyPolicy="PublicFirst">
     <parameters>
       <parametergroup name="general" c_Alias="一般" c_Compox="sightx-tab" c_Index="1" c_Option="true" c_Escape="true" >
         <parameter name="columnName" c_Alias="待赋值列" c_Compox="sengee-column-selector" c_Index="2" c_Option="false" c_Escape="true" c_Var="true" >userContent</parameter>
@@ -160,7 +160,7 @@
       <parametergroup name="columnSet" c_Alias="列集" c_Compox="sightx-tab" c_Index="1" c_Option="true" c_Escape="true" >
         <parametergroup name="colMappings" c_Alias="列集合" c_Compox="sengee-colMappings" c_Index="2" c_Option="true" c_Escape="true" c_Var="true" >
           <parametergroup name="mappingEntry">
-            <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="false">messages</parameter>
+            <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="false">conversations</parameter>
             <parameter name="colType" c_Alias="输出列类型" c_Compox="sightx-datatype" c_Index="0" c_Option="true">Array</parameter>
             <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">merge2Array(false,user,assistant)</parameter>
           </parametergroup>
@@ -175,7 +175,7 @@
       <tag name="type" value="Processing" />
     </tags>
   </fnode>
-  <fnode id="27F2C0D95705923F" name="JsonWriter" alias="Json写出" x="348" y="291" replica="1" dependencyPolicy="PublicFirst">
+  <fnode id="27F2C0D95705923F" name="JsonWriter" alias="Json写出" x="337" y="297" replica="1" dependencyPolicy="PublicFirst">
     <parameters>
       <parametergroup name="general" c_Alias="一般" c_Compox="sightx-tab" c_Index="1" c_Option="true" c_Escape="true" >
         <parameter name="filePath" c_Alias="文件名" c_Compox="sengee-lwfile-selector" c_Index="2" c_Option="true" c_Escape="true" c_Var="true" >/modelMessages.json</parameter>
@@ -183,9 +183,9 @@
         <parameter name="modifiable" c_Alias="是否修改已存在文件" c_Compox="sightx-switch" c_Index="4" c_Option="true" c_Escape="true" c_Var="true" >true</parameter>
         <parametergroup name="colMappings" c_Alias="输出结构映射" c_Compox="sengee-colMappings" c_Index="5" c_Option="true" c_Escape="true" c_Var="true" >
           <parametergroup name="mappingEntry">
-            <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="true">messages</parameter>
+            <parameter name="colName" c_Alias="输出列名称" c_Compox="sightx-input" c_Index="0" c_Option="true">conversations</parameter>
             <parameter name="colType" c_Alias="输出列类型" c_Compox="sightx-hidden" c_Index="0" c_Option="true">Array&lt;Object[java.lang.Object]&gt;</parameter>
-            <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">messages</parameter>
+            <parameter name="colExpr" c_Alias="输出数据表达式" c_Compox="sightx-input" c_Index="0" c_Option="true">conversations</parameter>
           </parametergroup>
         </parametergroup>
       </parametergroup>
